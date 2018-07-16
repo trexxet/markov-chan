@@ -1,10 +1,13 @@
 cmake_minimum_required(VERSION 3.10)
 project(markov_chan)
-
 set(CMAKE_CXX_STANDARD 17)
+
 set(CMAKE_RUNTIME_OUTPUT_DIRECTORY "${CMAKE_SOURCE_DIR}/bin")
+include_directories(include)
 
-
-set(SRC main.cpp)
+set(SRC
+        src/main.cpp
+        src/Learn.cpp
+        src/State.cpp)
 
 add_executable(markov_chan ${SRC})
