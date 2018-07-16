@@ -13,9 +13,12 @@ class State {
 public:
 	std::wstring key;
 
-	void addNextState (const std::wstring& key);
+	void addNextState (const std::wstring &key, size_t count = 1);
 	void calcWeights ();
-	const std::map<std::wstring, edge_out> &getNextStates();
+	const std::map<std::wstring, edge_out> &getNextStates ();
 
-	State (std::wstring& key) : key(key) {}
+	const std::wstring getNext (float value);
+
+
+	explicit State (std::wstring &key) : key (key) {}
 };

@@ -3,6 +3,7 @@
 #include <cwctype>
 #include <cwchar>
 #include <algorithm>
+#include "Chain.h"
 #include "State.h"
 
 extern bool verbose;
@@ -10,7 +11,7 @@ extern std::string chainFileExtension;
 
 
 LEARN_ERR learn (std::string filename) {
-	std::map<std::wstring, State> chain;
+	Chain chain;
 
 	/* Open file */
 	std::wifstream fileIn;
@@ -31,7 +32,7 @@ LEARN_ERR learn (std::string filename) {
 		std::transform (word.begin (), word.end (), word.begin (), towlower);
 
 		if (!word.empty ()) {
-			auto[newWord, success] = chain.try_emplace (word, State (word));
+			auto[newWord, success] = chain.data.try_emplace (word, State (word));
 
 			if (verbose) {
 				if (success)
@@ -55,16 +56,10 @@ LEARN_ERR learn (std::string filename) {
 	if (!fileOut.is_open ())
 		return LEARN_ERR::CANT_OPEN_OUTPUT_FILE;
 	fileOut.imbue (std::locale (""));
-	for (auto &chainItem : chain) {
-		fileOut << chainItem.first << std::endl;
-		auto nextStates = chainItem.second.getNextStates ();
-		for (auto &nextState : nextStates) {
-			fileOut << '\t' << nextState.first << " " << nextState.second.count << std::endl;
-		}
-	}
+	chain.writeToFile (fileOut);
 	fileOut.close ();
 
-	wprintf (L"Chain saved! Markov-chan has learned %lu new words!\n", chain.size ());
+	wprintf (L"Chain saved! Markov-chan has learned %lu new words!\n", chain.data.size ());
 
 	return LEARN_ERR::OK;
 }

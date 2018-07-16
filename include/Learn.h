@@ -1,7 +1,6 @@
 #pragma once
 
 #include <string>
-#include <map>
 
 enum class LEARN_ERR : int {
 	OK = 0,

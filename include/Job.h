@@ -4,7 +4,7 @@
 
 struct Job {
 	enum class Type {
-		Learn, Run
+		Nothing = 0, Learn, Run
 	};
 	Type type;
 	std::string target;

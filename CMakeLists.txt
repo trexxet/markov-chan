@@ -7,7 +7,9 @@ include_directories(include)
 
 set(SRC
         src/main.cpp
+        src/State.cpp
+        src/Chain.cpp
         src/Learn.cpp
-        src/State.cpp)
+        src/Run.cpp)
 
 add_executable(markov_chan ${SRC})
