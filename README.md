@@ -1,4 +1,7 @@
 # markov-chan
+[![CodeFactor](https://www.codefactor.io/repository/github/trexxet/markov-chan/badge)](https://www.codefactor.io/repository/github/trexxet/markov-chan)
+[![Codacy Badge](https://api.codacy.com/project/badge/Grade/3162ed565d32482db56c9088b22444f0)](https://www.codacy.com/app/trexxet/markov-chan?utm_source=github.com&amp;utm_medium=referral&amp;utm_content=trexxet/markov-chan&amp;utm_campaign=Badge_Grade)
+
 Yet another Markov chain text generator
 
 ## Build
